@@ -1,0 +1,51 @@
+{
+  "name": "asm-paris-navigator",
+  "version": "1.0.0",
+  "description": "ASM Paris Navigator - navigation Metro, RER et Bus pour Paris",
+  "main": "main.js",
+  "author": "ASM Technologies",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js",
+    "pack": "electron-builder --dir",
+    "dist:win": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^38.2.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.asmtechnologies.parisnavigator",
+    "productName": "ASM Paris Navigator",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "main.js",
+      "preload.js",
+      "logo.png",
+      "assets/**/*"
+    ],
+    "win": {
+      "icon": "assets/asm-navigator.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ASM Paris Navigator",
+      "artifactName": "ASM-Paris-Navigator-Setup-${version}.${ext}"
+    }
+  }
+}
